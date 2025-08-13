@@ -1,4 +1,4 @@
-import type { InventoryResponseDto } from "../models/inventoryResponseDto";
+import type { InventoryResponseDto } from "../models";
 
 export class InventoryModel {
   sold: number;

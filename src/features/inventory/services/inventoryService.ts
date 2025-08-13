@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { InventoryResponseDto } from "../models/inventoryResponseDto";
+import type { InventoryResponseDto } from "../models";
 
 const API_URL = import.meta.env.VITE_API_URL;
 

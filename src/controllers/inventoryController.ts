@@ -1,5 +1,5 @@
-import { InventoryService } from "../features/inventory/services/inventoryService";
-import { InventoryModel } from "../features/inventory/models/Inventory";
+import { InventoryService } from "../features/inventory/services";
+import { InventoryModel } from "../features/inventory/models";
 
 export const InventoryController = {
   async fetchInventory() {

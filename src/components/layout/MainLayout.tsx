@@ -6,7 +6,8 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
   return (
     <Box display="flex" flexDirection="column" minHeight="100vh">
       <Header />
-      <Container sx={{ flex: 1, py: 3 }}>{children}</Container>
+      {/* <div style={{backgroundColor: 'red'}}>ABC</div> */}
+      <Container sx={{ flex: 1, py: 3 }} maxWidth={false}>{children}</Container>
       <Footer />
     </Box>
   );

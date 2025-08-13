@@ -1,16 +1,18 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import InventoryPage from '../features/inventory/pages/InventoryPage';
 import MainLayout from '../components/layout/MainLayout';
+import { NAV_ITEMS } from '../config/navigation';
 
 export default function AppRoutes() {
   return (
     <BrowserRouter>
       <Routes>
-      <Route path="/" element={
-        <MainLayout>
-          <InventoryPage />
-        </MainLayout>
-      } />
+      {NAV_ITEMS.map(({ path, element }) => (
+          <Route
+            key={path}
+            path={path}
+            element={<MainLayout>{element}</MainLayout>}
+          />
+        ))}
     </Routes>
     </BrowserRouter>
   );
