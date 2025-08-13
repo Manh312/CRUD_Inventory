@@ -5,12 +5,12 @@ export default function HomePage() {
   return (
     <Box
       sx={{
-        minHeight: 'calc(100vh - 64px)', // trừ header
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
         p: 3,
+        marginTop: 30,
       }}
     >
       <Stack spacing={3} maxWidth="600px">

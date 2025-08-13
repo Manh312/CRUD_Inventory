@@ -9,13 +9,13 @@ interface PageTitleProps {
 export default function CustomPageTitle({ title, subtitle }: PageTitleProps) {
   return (
     <Box mb={3} display="flex" flexDirection="column" gap={0.5}>
-      <Box display="flex" alignItems="center" gap={1}>
-        <Typography variant="h4" fontWeight="bold">
+      <Box>
+        <Typography variant="h4" fontWeight="bold" textAlign={'center'}>
           {title}
         </Typography>
       </Box>
       {subtitle && (
-        <Typography variant="subtitle1" color="text.secondary">
+        <Typography variant="subtitle1" color="text.secondary" textAlign={'center'}>
           {subtitle}
         </Typography>
       )}
