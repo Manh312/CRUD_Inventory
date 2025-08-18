@@ -6,3 +6,8 @@ export interface InventoryResponseDto {
   notAvailable: number; // camelCase chuẩn TypeScript
   peric: number;
 }
+
+// export interface InventoryDetailResponseDto {
+//   items: Array<{ id: string; description: string; [key: string]: unknown }>;
+//   totalCount: number;
+// }

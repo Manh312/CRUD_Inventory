@@ -1,7 +1,7 @@
 // src/components/layout/DesktopMenu.tsx
 import { Box } from '@mui/material';
 import { Link } from 'react-router-dom';
-import CustomButton from '../common/CustomButton';
+import CustomButton from '../common/Button';
 import type { DesktopMenuProps } from '../../config/navigation';
 
 

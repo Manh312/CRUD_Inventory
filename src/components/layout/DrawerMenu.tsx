@@ -1,7 +1,7 @@
 import { Box, Typography, List, ListItem, IconButton } from '@mui/material';
 import { Link } from 'react-router-dom';
 import CloseIcon from '@mui/icons-material/Close';
-import CustomButton from '../common/CustomButton';
+import CustomButton from '../common/Button';
 import type { NavItem } from '../../config/navigation';
 
 interface DrawerMenuProps {

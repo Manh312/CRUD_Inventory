@@ -1,6 +1,6 @@
 import type { JSX } from "react";
-import HomePage from "../features/inventory/pages/HomePage";
-import InventoryPage from "../features/inventory/pages/InventoryPage";
+import HomePage from "../pages/HomePage";
+import InventoryPage from "../pages/InventoryPage";
 
 
 

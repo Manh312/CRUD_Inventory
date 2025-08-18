@@ -1,4 +1,4 @@
-import type { InventoryResponseDto } from "../models";
+import type { InventoryResponseDto } from "./inventoryResponseDto";
 
 export class InventoryModel {
   sold: number;
@@ -12,7 +12,7 @@ export class InventoryModel {
     this.sold = data.sold;
     this.unsold = data.unsold;
     this.pending = data.pending;
-    this.available = data.available;
+    this.available = data.available; 
     this.notAvailable = data.notAvailable;
     this.peric = data.peric;
   }

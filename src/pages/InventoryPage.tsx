@@ -1,13 +1,15 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Paper, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 import { getInventory } from '../redux/slices';
 import type { RootState, AppDispatch } from '../redux/slices';
-import CustomLoadingSpinner from '../../../components/common/CustomLoadingSpinner';
-import CustomEmptyMessage from '../../../components/common/CustomEmptyMessage';
-import CustomErrorMessage from '../../../components/common/CustomErrorMessage';
-import CustomPageTitle from '../../../components/common/CustomPageTitle';
-import CustomCard from '../../../components/common/CustomCard';
+import CustomLoadingSpinner from '../components/common/LoadingSpinner';
+import CustomEmptyMessage from '../components/common/EmptyMessage';
+import CustomErrorMessage from '../components/common/ErrorMessage';
+import CustomPageTitle from '../components/common/PageTitle';
+import CustomCard from '../components/common/Card';
+import CustomButton from '../components/common/Button';
+import PageLayout from '../components/layout/PageLayout';
 
 export default function InventoryPage() {
   const dispatch = useDispatch<AppDispatch>();
@@ -16,19 +18,18 @@ export default function InventoryPage() {
   );
 
   useEffect(() => {
-    // Gọi API ngay khi component mount
     dispatch(getInventory());
-
-    // Thiết lập interval để gọi API mỗi 10 giây
     const intervalId = setInterval(() => {
       dispatch(getInventory());
-    }, 10000); // 10 giây = 10000ms
-
-    // Dọn dẹp interval khi component unmount
+    }, 10000);
     return () => clearInterval(intervalId);
   }, [dispatch]);
 
-  const cardItems = [
+  const cardItems: Array<{
+    label: string;
+    value: number | undefined;
+    color: string;
+  }> = [
     { label: 'Sold', value: inventory?.sold, color: '#4caf50' },
     { label: 'Unsold', value: inventory?.unsold, color: '#f44336' },
     { label: 'Pending', value: inventory?.pending, color: '#ff9800' },
@@ -38,13 +39,7 @@ export default function InventoryPage() {
   ];
 
   return (
-    <Paper
-      sx={{
-        p: { xs: 2, sm: 4, md: 6, lg: 10 }, // Giảm padding trên màn hình nhỏ
-        marginTop: { xs: 2, sm: 3, md: 5 }, // Giảm margin trên màn hình nhỏ
-        mx: { xs: 1, sm: 2 }, // Thêm margin ngang để tránh sát lề
-      }}
-    >
+    <PageLayout>
       <CustomPageTitle
         title="Inventory Pet Management"
         subtitle="Manage all pets' inventory status"
@@ -55,13 +50,36 @@ export default function InventoryPage() {
       {error && <CustomErrorMessage message={error} />}
 
       {!loading && inventory && Object.keys(inventory).length > 0 ? (
-        <Grid container spacing={{ xs: 1, sm: 2, md: 3 }} justifyContent="center">
+        <Grid
+          container
+          spacing={{ xs: 2, sm: 3, md: 4 }}
+          justifyContent="center"
+        >
           {cardItems.map((item) => (
             <Grid key={item.label}>
               <CustomCard
                 label={item.label}
                 value={item.value ?? 0}
                 color={item.color}
+                action={
+                  <CustomButton
+                    fullWidth
+                    sx={{
+                      borderRadius: 2,
+                      fontWeight: 'bold',
+                      py: 1,
+                      bgcolor: item.color,
+                      color: 'white',
+                      '&:hover': {
+                        bgcolor: item.color,
+                        opacity: 0.9,
+                      },
+                    }}
+                    to={`/inventory/detail/${item.label.toLowerCase()}`}
+                  >
+                    View Details
+                  </CustomButton>
+                }
               />
             </Grid>
           ))}
@@ -69,6 +87,6 @@ export default function InventoryPage() {
       ) : (
         !loading && <CustomEmptyMessage message="No inventory data available." />
       )}
-    </Paper>
+    </PageLayout>
   );
 }
